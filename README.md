@@ -1,2 +1,2 @@
 # twofactor-dir
-Add two factor authenticate on specified dir
+Add two factor authentication on specified dir

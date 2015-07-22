@@ -11,10 +11,6 @@ php:
   - hhvm
 
 
-# optionally specify a list of environments, for example to test different RDBMS
-env:
-  - DB=mysql
-
 # Commands to be run before your environment runs.
 before_script:
   - composer self-update

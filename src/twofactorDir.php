@@ -54,14 +54,34 @@ class twofactorDir
      * @param string $serviceName
      * @param string $dir
      */
-    public function __construct($secret = "", $serviceName="", $dir = ".")
+    public function __construct($dir = ".", $serviceName="", $secret = "")
     {
         $this->googleAuthenticator = new GoogleAuthenticator();
-        if($secret)
+        if($secret == "")
             $this->secret = $this->googleAuthenticator->generateSecret();
+        else
+            $this->secret = $secret;
         $this->serviceName = $serviceName;
         $this->dir = $dir;
     }
+
+
+    /**
+     *
+     */
+    public function __clone()
+    {
+        $this->googleAuthenticator = clone $this->googleAuthenticator;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return ("dir: ".$this->dir." serviceName: ".$this->serviceName." secret: ".$this->secret);
+    }
+
 
     /**
      * @return string
@@ -111,6 +131,11 @@ class twofactorDir
         $this->serviceName = $serviceName;
     }
 
+    public function getCode()
+    {
+        return $this->googleAuthenticator->getCode($this->secret);
+    }
+
     /**
      * Get the QR code url
      * @return string
@@ -145,5 +170,4 @@ class twofactorDir
         fwrite($f,file_get_contents(__DIR__."redirect.php"));
         fclose($f);
     }
-
 }

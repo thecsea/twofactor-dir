@@ -3,7 +3,7 @@
  * Created by PhpStorm.
  * User: claudio
  * Date: 21/07/15
- * Time: 18.57
+ * Time: 18.55
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
  * as published by the Free Software Foundation; either version 2
@@ -16,4 +16,4 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
-
+new it\thecsea\twofactorDir\twofactorDir(__DIR__);

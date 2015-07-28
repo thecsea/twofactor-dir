@@ -178,8 +178,8 @@ class twofactorDir
         fwrite($f, str_replace($strReplaceS,$strReplaceR,file_get_contents(__DIR__ . "/../files/redirect.php")));
         fclose($f);
 
-        $f = fopen($dir . "/get_code.php", "w");
-        fwrite($f, str_replace($strReplaceS,$strReplaceR,file_get_contents(__DIR__ . "/../files/get_code.php")));
+        $f = fopen($dir . "/get_qr.php", "w");
+        fwrite($f, str_replace($strReplaceS,$strReplaceR,file_get_contents(__DIR__ . "/../files/get_qr.php")));
         fclose($f);
 
         fclose(fopen($dir . "/secret.php", "a")); //create secret if it doesn't exists

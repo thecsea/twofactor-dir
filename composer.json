@@ -1,7 +1,7 @@
 {
   "name": "thecsea/twofactor-dir",
   "type": "library",
-  "keywords": ["two","factor", "dir", "authentication"],
+  "keywords": ["two","factor", "dir", "authentication", "google"],
   "description": "...",
   "homepage": "http://www.thecsea.it/progetti/",
   "minimum-stability": "stable",

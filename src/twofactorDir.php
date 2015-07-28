@@ -29,15 +29,22 @@ class twofactorDir
      * @var string
      */
     private $secret;
+    /**
+     * @var string
+     */
+    private $cookieCode;
 
-    public function __construct($dir = ".", $serviceName = "none")
+    public function __construct($dir = ".", $cookieCode="", $serviceName = "none")
     {
+        if($cookieCode=="")
+            $cookieCode = md5(rand());
         $this->dir = $dir;
+        $this->cookieCode = $cookieCode;
         $this->twofactorAdapter = new twofactorAdapter();
         $this->twofactorAdapter->setDir($this->dir);
         $this->twofactorAdapter->setServiceName($serviceName);
         $secret = $this->readSecret();
-        if($secret) {
+        if($secret &&  $secret != 1) {
             //I have a secret stored, so I set it as secret
             $this->twofactorAdapter->setSecret($secret);
         }else
@@ -54,7 +61,7 @@ class twofactorDir
      * @return string
      * @link http://php.net/manual/en/language.oop5.magic.php#language.oop5.magic.tostring
      */
-    function __toString()
+    public function __toString()
     {
         // TODO: Implement __toString() method.
     }
@@ -69,7 +76,7 @@ class twofactorDir
      * @return mixed
      * @link http://php.net/manual/en/language.oop5.cloning.php
      */
-    function __clone()
+    public function __clone()
     {
         // TODO: Implement __clone() method.
     }
@@ -78,22 +85,22 @@ class twofactorDir
     /**
      *
      */
-    static private function redirect301()
+    static private function redirect()
     {
-        header("HTTP/1.1 301 Moved Permanently");
-        header("Location: ".(isset($_SERVER["REQUEST_SCHEME"]) && $_SERVER["REQUEST_SCHEME"] == "https"?"https":"http").$_SERVER["HTTP_HOST"]."/".$_SERVER["REQUEST_URI"]);
+        //header("HTTP/1.1 301 Moved Permanently");
+        header("Location: ".(isset($_SERVER["REQUEST_SCHEME"]) && $_SERVER["REQUEST_SCHEME"] == "https"?"https":"http")."://".$_SERVER["HTTP_HOST"]."".$_SERVER["REQUEST_URI"]);
     }
 
     /**
-     * CAUTION this method uses session_start, it must be called before any print
+     * CAUTION this method uses cookie, it must be called before any print
+     * this method check if the cookie exists and if it is correct, if it is correct the method perform redirect
      * @return bool true if the redirect is done
      */
     public function redirectCheck()
     {
-        session_start();
-        if(isset($_SESSION['logged']))
+        if(isset($_COOKIE['twofactorDir-'.$this->dir]) && $_COOKIE['twofactorDir-'.$this->dir] == $this->cookieCode)
         {
-            self::redirect301();
+            self::redirect();
             return true;
         }else
         {
@@ -101,26 +108,51 @@ class twofactorDir
         }
     }
 
+
     /**
-     * CAUTION this method uses session_start, it must be called before any print
+     * Get QR code URL
+     * @return string
+     */
+    public function getURL()
+    {
+        return $this->twofactorAdapter->getURL();
+    }
+
+    /**
+     * CAUTION this method uses cookie, it must be called before any print
      * this method checks code and performs login
+     * this method perform redirect if the code is correct, after setting the cookie
      * @param string $code
      * @return bool true if the code is corret
      */
     public function checkCode($code)
     {
         $res = $this->twofactorAdapter->check($code);
-        session_start();
-        $_SESSION['logged'] = "";
+
+        if($res)
+        {
+            setcookie('twofactorDir-' . $this->dir, $this->cookieCode, 0, "/");
+            self::redirect();
+        }
+
         return $res;
     }
 
+
+    /**
+     * store the secret in file
+     * @param string $secret
+     */
     private function storeSecret($secret)
     {
-        $str = "<?php\nreturn $secret;";
+        $str = "<?php\nreturn \"$secret\";";
         file_put_contents($this->dir."/secret.php",$str);
     }
 
+    /**
+     * return the secret stored in file
+     * @return string
+     */
     private function readSecret()
     {
         $name = $this->dir."/secret.php";
@@ -130,16 +162,23 @@ class twofactorDir
 
     /**
      * Install library into a dir
-     * @param string $dir
+     * @param string $dir dir must be absolute link
      */
     static public function install($dir = ".")
     {
+        $cookieCode = md5(rand());
+        $strReplaceS = array("{SRC_DIR}", "{CUR_DIR}", "{COOKIE_CODE}");
+        $strReplaceR = array(__DIR__."/..", $dir, $cookieCode);
         $f = fopen($dir . "/.htaccess", "a");
-        fwrite($f, file_get_contents(__DIR__ . "/../files/.htaccess"));
+        fwrite($f, str_replace($strReplaceS,$strReplaceR,file_get_contents(__DIR__ . "/../files/x.htaccess")));
         fclose($f);
 
         $f = fopen($dir . "/redirect.php", "w");
-        fwrite($f, file_get_contents(__DIR__ . "/../files/redirect.php"));
+        fwrite($f, str_replace($strReplaceS,$strReplaceR,file_get_contents(__DIR__ . "/../files/redirect.php")));
+        fclose($f);
+
+        $f = fopen($dir . "/get_code.php", "w");
+        fwrite($f, str_replace($strReplaceS,$strReplaceR,file_get_contents(__DIR__ . "/../files/get_code.php")));
         fclose($f);
     }
 }

@@ -16,7 +16,7 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
-require_once("{SRC_DIR}/vendor/autoload.php");
+require_once("{SRC_DIR}/../../autoload.php");
 
 $twofactorDir = new it\thecsea\twofactorDir\twofactorDir(__DIR__,"{COOKIE_CODE}");
 

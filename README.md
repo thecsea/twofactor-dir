@@ -64,6 +64,8 @@ You can set different different directory keeping only one software location, bu
 
 after this you will see new files and htaccess updated
 
+We suggest to hide via htaccess the *twofactor-dir* installation directory
+
 ###First Use
 You can get secret or QR code on `YOUR_DIR/get_qr.php`
 

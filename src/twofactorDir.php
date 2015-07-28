@@ -171,7 +171,10 @@ class twofactorDir
         $strReplaceS = array("{SRC_DIR}", "{CUR_DIR}", "{COOKIE_CODE}");
         $strReplaceR = array(__DIR__."/..", $dir, $cookieCode);
         $f = fopen($dir . "/.htaccess", "a");
-        fwrite($f, str_replace($strReplaceS,$strReplaceR,file_get_contents(__DIR__ . "/../files/x.htaccess")));
+        if(strpos(file_get_contents($dir."/.htaccess"), "##START twofactor-dir")===false)
+        {
+            fwrite($f, str_replace($strReplaceS, $strReplaceR, file_get_contents(__DIR__ . "/../files/x.htaccess")));
+        }
         fclose($f);
 
         $f = fopen($dir . "/redirect.php", "w");

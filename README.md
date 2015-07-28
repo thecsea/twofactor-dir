@@ -68,6 +68,7 @@ after this you will see new files and htaccess updated
 You can get secret or QR code on `YOUR_DIR/get_qr.php`
 
 After linked a device we suggest to hide get_qr to not logged users in the following way:
+
 **CAUTION** Comment `RewriteRule ^get_code.php$ get_qr.php [L,QSA]` on htaccess generated after get qr for the first time,so you are able to get qr (to add more devices) only after login
 
 ##Use
@@ -83,6 +84,6 @@ To unistall twofactor-dir for a directory you have to remove the following files
 
 and remove the twofactor-dir lines (marked) from `.htacces`
 
-**You must keep the twofactor-dir installation (installation downloaded by composer) if you have set up it in other directories** 
+**CAUTION: You must keep the twofactor-dir installation (installation downloaded by composer) if you have set up it in other directories** 
 
 #By thecsea.it

@@ -77,13 +77,13 @@ When you try to access to each page of the directory you will be redirected to i
 You can add new devices after login (insert code page) calling `YOUR_DIR/get_qr.php`
 
 ##Uninstall
-To unistall twofactor-dir for a directory you have to remove the following files from your dir:
+To unistall *twofactor-dir* for a directory you have to remove the following files from your dir:
 * get_qr.php
 * redirect.php
 * secret.php
 
-and remove the twofactor-dir lines (marked) from `.htacces`
+and remove the *twofactor-dir* lines (marked) from `.htacces`
 
-**CAUTION: You must keep the twofactor-dir installation (installation downloaded by composer) if you have set up it in other directories** 
+**CAUTION: You must keep the *twofactor-dir* installation (installation downloaded by composer) if you have set up it in other directories** 
 
 #By thecsea.it

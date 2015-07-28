@@ -56,29 +56,21 @@ class twofactorDir
     }
 
     /**
-     * The __toString method allows a class to decide how it will react when it is converted to a string.
-     *
+     * to string
      * @return string
-     * @link http://php.net/manual/en/language.oop5.magic.php#language.oop5.magic.tostring
      */
     public function __toString()
     {
-        // TODO: Implement __toString() method.
+        return ("Dir: ".$this->dir." secret: ".$this->secret." service name: ".$this->twofactorAdapter->getServiceName());
     }
 
+
     /**
-     * When an object is cloned, PHP 5 will perform a shallow copy of all of the object's properties.
-     * Any properties that are references to other variables, will remain references.
-     * Once the cloning is complete, if a __clone() method is defined,
-     * then the newly created object's __clone() method will be called, to allow any necessary properties that need to be changed.
-     * NOT CALLABLE DIRECTLY.
-     *
-     * @return mixed
-     * @link http://php.net/manual/en/language.oop5.cloning.php
+     * private clone, you cannot clone thsi class
      */
-    public function __clone()
+    private function __clone()
     {
-        // TODO: Implement __clone() method.
+
     }
 
 
@@ -159,6 +151,15 @@ class twofactorDir
         return (require ($name));
     }
 
+    /**
+     * get secret string
+     * @return string
+     */
+    public function getSecret()
+    {
+        return $this->secret;
+    }
+
 
     /**
      * Install library into a dir
@@ -180,5 +181,7 @@ class twofactorDir
         $f = fopen($dir . "/get_code.php", "w");
         fwrite($f, str_replace($strReplaceS,$strReplaceR,file_get_contents(__DIR__ . "/../files/get_code.php")));
         fclose($f);
+
+        fclose(fopen($dir . "/secret.php", "a")); //create secret if it doesn't exists
     }
 }

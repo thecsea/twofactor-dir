@@ -2,7 +2,7 @@
   "name": "thecsea/twofactor-dir",
   "type": "library",
   "keywords": ["two","factor", "dir", "authentication", "google"],
-  "description": "...",
+  "description": "The most powerful and the simplest library to add two factor authentication by google authenticator, in every directory that you want in just one step",
   "homepage": "http://www.thecsea.it/progetti/",
   "minimum-stability": "stable",
   "license": "GPL-2.0",

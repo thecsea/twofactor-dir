@@ -1,3 +1,6 @@
+
+##START twofactor-dir
+
 RewriteEngine on
 RewriteRule ^get_qr.php$ get_code.php [L,QSA] ##comment this line to hide get_qr.php for not logged users
 RewriteCond %{HTTP_COOKIE}  !twofactorDir-{CUR_DIR}={COOKIE_CODE}
@@ -7,3 +10,5 @@ RewriteRule ^(.*)$ redirect.php [L,QSA]
 order allow,deny
 deny from all
 </Files>
+
+##END twofactor-dir

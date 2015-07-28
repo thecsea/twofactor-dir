@@ -42,11 +42,11 @@ if(isset($_POST['dir']))
     }
 }
 ?>
-You have to create secret.php file that is writable, with right permissions<br>
+The directory must be writable by php<br>
 You also have to enable mod rewrite and .htaccess<br>
 you have to don't change the twofactor-dir package directory after an installation
 <form action="" method="post">
-    <label for="dir">directory</label>: <input type="text" id="dir" name="dir"><br>
+    <label for="dir">directory (preferably absolute link)</label>: <input type="text" id="dir" name="dir"><br>
     <input type="submit" value="install">
 </form>
 </body>

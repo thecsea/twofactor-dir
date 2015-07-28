@@ -28,6 +28,6 @@ $twofactorDir = new it\thecsea\twofactorDir\twofactorDir(__DIR__,"{COOKIE_CODE}"
 </head>
 <body>
 <img src="<?=$twofactorDir->getURL()?>"><br>
-
+Or type secret: <?=$twofactorDir->getSecret()?>
 </body>
 </html>

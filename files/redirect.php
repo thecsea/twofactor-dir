@@ -27,7 +27,7 @@ if(isset($_POST['code'])) {
     if ($twofactorDir->checkCode($_POST['code'])) {
         die();//OK so I will perform a redirecy
     }else
-        $mex .= "Code error<br>\n";
+        $mex .= "Code wrong<br>\n";
 }
 ?>
 <!DOCTYPE html>

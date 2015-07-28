@@ -67,9 +67,9 @@ after this you will see new files and htaccess updated
 ###First Use
 You can get secret or QR code on `YOUR_DIR/get_qr.php`
 
-After linked a device we suggest to hide get_qr to not logged users in the following way:
+After linked a device we suggest to hide `get_qr.php` for not logged users in the following way:
 
-**CAUTION** Comment `RewriteRule ^get_code.php$ get_qr.php [L,QSA]` on htaccess generated after get qr for the first time,so you are able to get qr (to add more devices) only after login
+**CAUTION** Comment `RewriteRule ^get_code.php$ get_qr.php [L,QSA]` on htaccess generated after get qr for the first time, so you are able to get qr (to add more devices) only after login
 
 ##Use
 When you try to access to each page of the directory you will be redirected to insert code page, when you insert code you will be logged until the session is closed.
@@ -86,4 +86,4 @@ and remove the *twofactor-dir* lines (marked) from `.htacces`
 
 **CAUTION: You must keep the *twofactor-dir* installation (installation downloaded by composer) if you have set up it in other directories** 
 
-#By thecsea.it
+#By [thecsea.it](http://www.thecsea.it)

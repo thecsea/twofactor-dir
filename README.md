@@ -14,6 +14,7 @@ The most powerful and the simplest library to add two factor authentication by g
 #Constraints
 * **httacces and mod rewrite needed**
 * php write permission
+* the date time on the server must be synchronized (only 1 minute of margin) 
 
 #Download
 ##Get/update composer
@@ -67,7 +68,7 @@ after this you will see new files and htaccess updated
 We suggest to hide via htaccess the *twofactor-dir* installation directory
 
 ###First Use
-You can get secret or QR code on `YOUR_DIR/get_qr.php`
+You can get secret or QR code on `YOUR_DIR/get_qr.php`. We suggest to use a https connection
 
 After linked a device we suggest to hide `get_qr.php` for not logged users in the following way:
 

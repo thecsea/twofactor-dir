@@ -38,7 +38,7 @@ if(isset($_POST['dir']))
     else
     {
         it\thecsea\twofactorDir\twofactorDir::install($_POST['dir']);
-        print "Script installed. If there are not php error, in case of php errors you have to perform uninstallation of the partial installation<br>\n";
+        print "Script installed correctly if there are not php error. In case of php errors you have to perform uninstallation of the partial installation<br>\n";
     }
 }
 ?>

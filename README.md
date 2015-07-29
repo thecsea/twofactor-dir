@@ -79,6 +79,9 @@ When you try to access to each page of the directory you will be redirected to i
 
 You can add new devices after login (insert code page) calling `YOUR_DIR/get_qr.php`
 
+##Disable
+You can disable *twofactor-dir* temporarily commenting the redirect instructions on `.htaccess` 
+
 ##Uninstall
 To unistall *twofactor-dir* for a directory you have to remove the following files from your dir:
 * get_qr.php

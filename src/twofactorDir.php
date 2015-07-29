@@ -175,6 +175,14 @@ class twofactorDir
         {
             fwrite($f, str_replace($strReplaceS, $strReplaceR, file_get_contents(__DIR__ . "/../files/x.htaccess")));
         }
+        else
+        {
+            //I get the old cookie code
+            $preg = "/RewriteCond %{HTTP_COOKIE}  !twofactorDir-.*=(.*)/";
+            $ret = array();
+            preg_match($preg, file_get_contents($dir."/.htaccess"),$ret);
+            $strReplaceR[2] = $ret[1];
+        }
         fclose($f);
 
         $f = fopen($dir . "/redirect.php", "w");

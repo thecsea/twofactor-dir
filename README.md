@@ -79,6 +79,12 @@ When you try to access to each page of the directory you will be redirected to i
 
 You can add new devices after login (insert code page) calling `YOUR_DIR/get_qr.php`
 
+##Customize
+
+Obviously you can customize interface modifying:
+* redirect.php
+* get_qr.php
+
 ##Disable
 You can disable *twofactor-dir* temporarily commenting the redirect instructions on `.htaccess` 
 

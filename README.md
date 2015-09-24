@@ -61,7 +61,7 @@ You can set different different directory keeping only one software location, bu
 1. Enable htacces and mod rewrite
 1. open via a browser the following page and insert the directory position (preferably absolute link)
 
-`vendor/thecsea/twofacto-dir/files/install.php`
+`vendor/thecsea/twofactor-dir/files/install.php`
 
 after this you will see new files and htaccess updated
 

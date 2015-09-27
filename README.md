@@ -98,4 +98,9 @@ and remove the *twofactor-dir* lines (marked) from `.htacces`
 
 **CAUTION: You must keep the *twofactor-dir* installation (installation downloaded by composer) if you have set up it in other directories** 
 
+
+# Credits
+* [Sonata GoogleAuthenticator](https://github.com/sonata-project/GoogleAuthenticator): php library to use twofactor in the same way of google authenticator
+
+
 #By [thecsea.it](http://www.thecsea.it)
